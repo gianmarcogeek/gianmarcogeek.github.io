@@ -1,0 +1,71 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image with Text Overlay</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+            }
+            .container {
+                position: relative;
+                text-align: center;
+                color: white;
+                margin-bottom: 20px;
+            }
+            .image {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+            .text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 2em;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 10px 20px;
+                border-radius: 10px;
+            }
+            .download-button {
+                padding: 10px 20px;
+                font-size: 1em;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    </head>
+    <body>
+        <div class="container" id="capture">
+            <img src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" alt="Image" class="image">
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </div>
+        <button class="download-button" onclick="downloadImage()">Download Image</button>
+
+        <script>
+            function downloadImage() {
+                html2canvas(document.getElementById('capture')).then(function(canvas) {
+                    var link = document.createElement('a');
+                    link.download = 'image-with-text.jpg';
+                    link.href = canvas.toDataURL('image/jpeg');
+                    link.click();
+                });
+            }
+        </script>
+    </body>
+    </html>
+    
